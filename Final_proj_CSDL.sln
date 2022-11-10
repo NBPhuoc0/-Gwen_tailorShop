@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Blend for Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Final_proj_CSDL", "Final_proj_CSDL\Final_proj_CSDL.csproj", "{FDB1BC63-73B3-45BF-8E1C-4B3AA1A40DCD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FDB1BC63-73B3-45BF-8E1C-4B3AA1A40DCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDB1BC63-73B3-45BF-8E1C-4B3AA1A40DCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDB1BC63-73B3-45BF-8E1C-4B3AA1A40DCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDB1BC63-73B3-45BF-8E1C-4B3AA1A40DCD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5CEE2DC2-EDF2-428C-8968-82879426A1E8}
+	EndGlobalSection
+EndGlobal

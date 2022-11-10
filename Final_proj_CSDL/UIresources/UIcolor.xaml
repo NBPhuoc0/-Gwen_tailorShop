@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!-- background -->
+    <Color x:Key="color1">Teal</Color>
+    <Color x:Key="color2">Salmon</Color>
+    
+    <!-- font color -->
+    <SolidColorBrush x:Key="fcolor1" Color="LightSteelBlue"/>
+
+</ResourceDictionary>
