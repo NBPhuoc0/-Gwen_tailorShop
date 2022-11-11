@@ -46,6 +46,9 @@
     <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.39\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -70,6 +73,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DAL\TaiKhoanDAO.cs" />
     <Compile Include="DAL\XuLySqlServer.cs" />
     <Compile Include="Models\DonHang_Models.cs" />
     <Compile Include="Models\PhanCong_Models.cs" />
@@ -85,7 +89,7 @@
     <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="ViewModels\SanPham_VM.cs" />
     <Compile Include="ViewModels\TaiKhoan_VM.cs" />
-    <Compile Include="ViewModels\TK_md.cs" />
+    <Compile Include="ViewModels\data_temp.cs" />
     <Compile Include="Views\home_view.xaml.cs">
       <DependentUpon>home_view.xaml</DependentUpon>
     </Compile>

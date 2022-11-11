@@ -13,35 +13,44 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              
              d:DesignHeight="450" d:DesignWidth="800">
-    
+
     <UserControl.DataContext>
         <ViewModels:Main_VM/>
     </UserControl.DataContext>
-    
-    
+
+    <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect ExpandIn, Duration = 0:0:0.8 }">
         <DockPanel>
             <StackPanel DockPanel.Dock="Top" Margin="30"
-                        HorizontalAlignment="Right" Orientation="Horizontal">
+                    HorizontalAlignment="Right" Orientation="Horizontal">
                 <TextBlock Text="Xin chào "/>
                 <TextBlock Text="{Binding TenUser}"/>
             </StackPanel>
-            <StackPanel Margin="20">
+            <TextBlock 
+            DockPanel.Dock="Top"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontSize="50"
+            Text="G W E N"/>
+
+            <StackPanel Margin="30 10">
                 <Button
-                    Command="{Binding Load_QLNS_Command}"
-                    Margin="5"
-                    Width="300"
-                    Content="Quản lý nhân sự"/>
+                Command="{Binding Load_QLNS_Command}"
+                Margin="5"
+                Width="300"
+                Content="Quản lý nhân sự"/>
                 <Button
-                    Command="{Binding Load_QLDon_Command}"
-                    Margin="5"
-                    Width="300"
-                    Content="Quản lý đơn hàng"/>
+                Command="{Binding Load_QLDon_Command}"
+                Margin="5"
+                Width="300"
+                Content="Quản lý đơn hàng"/>
                 <Button
-                    Command="{Binding Load_SPmau_Command}"
-                    Margin="5"
-                    Width="300"
-                    Content="Mẫu thiết kế"/>
+                Command="{Binding Load_SPmau_Command}"
+                Margin="5"
+                Width="300"
+                Content="Mẫu thiết kế"/>
             </StackPanel>
+
         </DockPanel>
-    
+
+    </materialDesign:TransitioningContent>    
 </UserControl>

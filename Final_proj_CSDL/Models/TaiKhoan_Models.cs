@@ -3,7 +3,7 @@ namespace Final_proj_CSDL.Models
 {
     internal class TaiKhoan_Models
     {
-        private int _id_user;
+        private int _TK_id;
         private string _tenTK;
         private string _MK;
         private string _hoten;
@@ -12,7 +12,7 @@ namespace Final_proj_CSDL.Models
         private string _mail;
         private string _chucvu;
 
-        public int Id_user { get => _id_user; set => _id_user = value; }
+        public int TK_id { get => _TK_id; set => _TK_id = value; }
         public string TenTK { get => _tenTK; set => _tenTK = value; }
         public string MK { get => _MK; set => _MK = value; }
         public string Hoten { get => _hoten; set => _hoten = value; }

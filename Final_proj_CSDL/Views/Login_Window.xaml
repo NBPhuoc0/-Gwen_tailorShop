@@ -54,7 +54,8 @@
                         Height="40" Width="40"
                         Kind="AccountCircle"/>
                     <TextBox
-                        x:Name="UserName"
+                        x:Name="TenTK"
+                        Text="{Binding TenTK, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         Width="240"
                         Height="40"
                         HorizontalContentAlignment="Center"
@@ -67,20 +68,27 @@
                         Height="40" Width="40"
                         Kind="Password"/>
                     <PasswordBox
-                        x:Name="Passw"
-                        Password="123"
+                        x:Name="MK"
+                        Password="1234"
                         Width="240"
                         Height="40"
                         HorizontalContentAlignment="Center"
                         FontSize="25"
                         materialDesign:HintAssist.Hint="Mật khẩu"/>
                 </StackPanel>
+                <!-- thanh trang thái-->
+                <Label 
+                    HorizontalAlignment="Center"
+                    Foreground="Red"
+                    FontSize="15"
+                    Height="30"
+                    Content="{Binding Status, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <!-- nút chức năng -->
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                     <Button Margin="10" Width="110" Height="30" 
                             Content="LOGIN" 
                             Command="{Binding LoginCommand}"
-                            CommandParameter="{Binding ElementName=Passw}"
+                            CommandParameter="{Binding ElementName=MK}"
                             Style="{StaticResource MaterialDesignOutlinedButton}"/>
                     
                     <Button Margin="10" Width="110" Height="30" 

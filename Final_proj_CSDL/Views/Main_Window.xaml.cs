@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -19,19 +20,19 @@ namespace Final_proj_CSDL.Views
     /// </summary>
     public partial class Main_Window : Window
     {
-        public static Main_Window trangchu;
+        public static Main_Window main_w;
         public Main_Window()
         {
             InitializeComponent();
-            trangchu = this;
+            main_w = this;
         }
         public void phanquyen(string quyen)
         {
             if (quyen == "QL")
             {
-                trangchu.SideBarQL.Visibility = Visibility.Visible;
+                main_w.SideBarQL.Visibility = Visibility.Visible;
             }
-            else trangchu.SideBarNV.Visibility = Visibility.Visible;
+            else main_w.SideBarNV.Visibility = Visibility.Visible;
         }
 
         private void closeW_btn(object sender, RoutedEventArgs e)
@@ -59,6 +60,19 @@ namespace Final_proj_CSDL.Views
             {
                 DragMove();
             }
+        }
+
+        private void SB_OnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var dependencyObject = Mouse.Captured as DependencyObject;
+
+            while (dependencyObject != null)
+            {
+                if (dependencyObject is ScrollBar) return;
+                dependencyObject = VisualTreeHelper.GetParent(dependencyObject);
+            }
+
+            MenuToggleButton.IsChecked = false;
         }
     }
 }

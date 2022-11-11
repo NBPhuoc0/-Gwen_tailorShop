@@ -7,5 +7,6 @@
     
     <!-- font color -->
     <SolidColorBrush x:Key="fcolor1" Color="LightSteelBlue"/>
+    <SolidColorBrush x:Key="fcolor2" Color="PeachPuff"/>
 
 </ResourceDictionary>

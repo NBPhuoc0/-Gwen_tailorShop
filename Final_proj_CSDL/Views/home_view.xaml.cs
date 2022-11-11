@@ -20,9 +20,11 @@ namespace Final_proj_CSDL.Views
     /// </summary>
     public partial class home_view : UserControl
     {
+        public static home_view trangchu;
         public home_view()
         {
             InitializeComponent();
+            trangchu = this;
         }
     }
 }

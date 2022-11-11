@@ -7,14 +7,85 @@
              mc:Ignorable="d"             
              xmlns:ViewModels="clr-namespace:Final_proj_CSDL.ViewModels"
              
-             TextElement.FontSize="25"
+             TextElement.FontSize="35"
              TextElement.Foreground="{StaticResource fcolor1}"
              TextElement.FontFamily="Segoe UI"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock Text="nhân sự view"
-                   Style="{StaticResource MaterialDesignHeadline1TextBlock}"/>
-    </Grid>
+
+    <UserControl.DataContext>
+        <ViewModels:TaiKhoan_VM/>
+    </UserControl.DataContext>
+
+    <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration = 0:0:1.4 }">
+        <!--OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration = 0:0:1.4 }"-->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <!-- nút chức năng -->
+            <DockPanel Margin="10">
+                <StackPanel
+                    Orientation="Horizontal"
+                    DockPanel.Dock="Right">
+                    <Button
+                        Content="{materialDesign:PackIcon Kind=AccountMultiplePlus}"
+                        Style="{StaticResource MaterialDesignFlatMidBgButton}" 
+                        ToolTip="Thêm tài khoản"/>
+                    <Button
+                        Margin="4 0 4 0"
+                        Content="{materialDesign:PackIcon Kind=AccountMultipleRemove}"
+                        Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                        materialDesign:HintAssist.Hint="Xoá tài khoản"/>
+                    <Button
+                        Content="{materialDesign:PackIcon Kind=AccountEdit}"
+                        Style="{StaticResource MaterialDesignFlatMidBgButton}"/>
+
+                </StackPanel>
+                <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="25"
+                            Text="Quản lý nhân sự"/>
+            </DockPanel>
+
+            <!-- phần xem -->
+            <DataGrid x:Name="DataGrid"
+                      Grid.Row="1"
+                      IsReadOnly="True"
+                      AutoGenerateColumns="False"
+                      ItemsSource="{Binding DanhSachTaiKhoan, UpdateSourceTrigger=PropertyChanged}"  
+                      BorderBrush="{StaticResource fcolor1}"
+                      ColumnHeaderStyle="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
+                      FontSize="25"
+                      OpacityMask="Black">
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Header="ID"
+                        MinWidth="100"
+                        Width="*"
+                        Binding="{Binding TK_id}"/>
+                    <DataGridTextColumn
+                        Header="Tài Khoản"
+                        MinWidth="100"
+                        Width="*"
+                        Binding="{Binding TenTK}"/>
+                    <DataGridTextColumn
+                        Header="Họ và tên"
+                        MinWidth="100"
+                        Width="*"
+                        Binding="{Binding Hoten}"/>
+                    <DataGridTextColumn
+                        Header="chức vụ"
+                        MinWidth="100"
+                        Width="*"
+                        Binding="{Binding Chucvu}"/>
+                </DataGrid.Columns>
+
+            </DataGrid>
+        </Grid>
+
+    </materialDesign:TransitioningContent>
 </UserControl>
