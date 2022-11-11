@@ -18,7 +18,7 @@
         <ViewModels:TaiKhoan_VM/>
     </UserControl.DataContext>
 
-    <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration = 0:0:1.4 }">
+    <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration = 0:0:1 }">
         <!--OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration = 0:0:1.4 }"-->
         <Grid>
             <Grid.RowDefinitions>
@@ -57,33 +57,63 @@
                       IsReadOnly="True"
                       AutoGenerateColumns="False"
                       ItemsSource="{Binding DanhSachTaiKhoan, UpdateSourceTrigger=PropertyChanged}"  
+                      SelectedItem="{Binding SelectedTaiKhoan, Mode=OneWayToSource}"
                       BorderBrush="{StaticResource fcolor1}"
                       ColumnHeaderStyle="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
                       FontSize="25"
                       OpacityMask="Black">
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridCell}">
+                        <Style.Triggers>
+                            <Trigger Property="DataGridCell.IsSelected" Value="True">
+                                <Setter Property="Background" Value="DarkSalmon" />
+                            </Trigger>
+                        </Style.Triggers>
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+
+                    </Style>
+                </DataGrid.Resources>
+                
                 <DataGrid.Columns>
                     <DataGridTextColumn
                         Header="ID"
-                        MinWidth="100"
-                        Width="*"
+                        Width="50"
                         Binding="{Binding TK_id}"/>
                     <DataGridTextColumn
                         Header="Tài Khoản"
                         MinWidth="100"
                         Width="*"
-                        Binding="{Binding TenTK}"/>
+                        Binding="{Binding TenTK}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="HorizontalAlignment" Value="Left"/>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
                     <DataGridTextColumn
                         Header="Họ và tên"
                         MinWidth="100"
                         Width="*"
-                        Binding="{Binding Hoten}"/>
+                        Binding="{Binding Hoten}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="HorizontalAlignment" Value="Left"/>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+
+                    </DataGridTextColumn>
                     <DataGridTextColumn
                         Header="chức vụ"
-                        MinWidth="100"
+                        MaxWidth="80"
                         Width="*"
-                        Binding="{Binding Chucvu}"/>
+                        Binding="{Binding Chucvu}" FontStyle="Normal" FontWeight="Normal" Visibility="Visible">
+                    </DataGridTextColumn>
+                    <DataGridCheckBoxColumn
+                        ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
+                        Header="Đã nghỉ việc"
+                        Width="110"
+                        Binding="{Binding Hoatdong}"/>
                 </DataGrid.Columns>
-
             </DataGrid>
         </Grid>
 

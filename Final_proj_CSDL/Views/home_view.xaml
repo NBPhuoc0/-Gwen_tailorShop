@@ -18,7 +18,7 @@
         <ViewModels:Main_VM/>
     </UserControl.DataContext>
 
-    <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect ExpandIn, Duration = 0:0:0.8 }">
+    <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect ExpandIn, Duration = 0:0:0.6 }">
         <DockPanel>
             <StackPanel DockPanel.Dock="Top" Margin="30"
                     HorizontalAlignment="Right" Orientation="Horizontal">

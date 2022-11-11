@@ -33,121 +33,126 @@
     <Window.DataContext>
         <ViewModels:Main_VM/>
     </Window.DataContext>
-    <materialDesign:DialogHost DialogTheme="Inherit">
-        <materialDesign:DrawerHost 
+    <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect ExpandIn, Duration = 0:0:0.6 }">
+        <materialDesign:DialogHost DialogTheme="Inherit">
+            <materialDesign:DrawerHost 
             OpenMode="Model"
             OverlayBackground="{StaticResource fcolor2}"
             IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}"
             LeftDrawerCornerRadius="0 20 20 0">
-            <!-- bảng sidebar bên trái -->
-            <materialDesign:DrawerHost.LeftDrawerContent >
-                
-                <DockPanel MinWidth="300">
-                    <!-- nút đóng sidabar -->
-                    <ToggleButton
+                <!-- bảng sidebar bên trái -->
+                <materialDesign:DrawerHost.LeftDrawerContent >
+
+                    <DockPanel MinWidth="300">
+                        <!-- nút đóng sidabar -->
+                        <ToggleButton
                         Margin="16"
                         HorizontalAlignment="Left"
                         DockPanel.Dock="Top"
                         IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}"
                         Style="{StaticResource MaterialDesignHamburgerToggleButton}"/>
-                    <!-- nút chức năng -->
-                    <ListView  >
-                        
-                    </ListView>
-                    <StackPanel x:Name="SideBarNV" 
+                        <!-- nút chức năng -->
+                        <ListView  >
+
+                        </ListView>
+                        <StackPanel x:Name="SideBarNV" 
                                 DockPanel.Dock="Top"
                                 Visibility="Collapsed" 
-                                PreviewMouseLeftButtonUp="SB_OnPreviewMouseLeftButtonUp"> <!-- dành cho nhân viên -->
-                        <RadioButton
+                                PreviewMouseLeftButtonUp="SB_OnPreviewMouseLeftButtonUp">
+                            <!-- dành cho nhân viên -->
+                            <RadioButton
                             Margin="0 2 0 2"
                             Style="{StaticResource MaterialDesignToolRadioButton}"
                             Command="{Binding Load_QLDon_Command, UpdateSourceTrigger=PropertyChanged}"
                             Content="quản lý đơn hàng"/>
-                        <RadioButton
+                            <RadioButton
                             Margin="0 2 0 2"
                             Style="{StaticResource MaterialDesignToolRadioButton}"
                             Command="{Binding Logout}"
                             Content="Logout"/>
-                    </StackPanel>
+                        </StackPanel>
 
-                    <StackPanel x:Name="SideBarQL" 
+                        <StackPanel x:Name="SideBarQL" 
                                 DockPanel.Dock="Top"
                                 Visibility="Collapsed"
-                                PreviewMouseLeftButtonUp="SB_OnPreviewMouseLeftButtonUp"> <!-- dành cho quản lý -->
-                        <RadioButton
+                                PreviewMouseLeftButtonUp="SB_OnPreviewMouseLeftButtonUp">
+                            <!-- dành cho quản lý -->
+                            <RadioButton
                             Margin="0 2 0 2"
                             Style="{StaticResource MaterialDesignToolRadioButton}"
                             Command="{Binding Load_QLDon_Command, UpdateSourceTrigger=PropertyChanged}"
                             Content="quản lý đơn hàng"/>
-                        <RadioButton
+                            <RadioButton
                             Margin="0 2 0 2"
                             Style="{StaticResource MaterialDesignToolRadioButton}"
                             Command="{Binding Load_QLNS_Command, UpdateSourceTrigger=PropertyChanged}"
                             Content="nhân sự"/>
-                        <RadioButton
+                            <RadioButton
                             Margin="0 2 0 2"
                             Style="{StaticResource MaterialDesignToolRadioButton}"
                             Command="{Binding Load_SPmau_Command, UpdateSourceTrigger=PropertyChanged}"
                             Content="sản phẩm mẫu"/>
-                        <RadioButton
+                            <RadioButton
                             Margin="0 2 0 2"
                             Style="{StaticResource MaterialDesignToolRadioButton}"
                             Command="{Binding Logout}"
                             Content="Logout"/>
-                    </StackPanel>
-                </DockPanel>
-            </materialDesign:DrawerHost.LeftDrawerContent>
+                        </StackPanel>
+                    </DockPanel>
+                </materialDesign:DrawerHost.LeftDrawerContent>
 
-            <DockPanel>
-                <!-- thanh controlbar bên trên -->
-                <materialDesign:ColorZone
+                <DockPanel>
+                    <!-- thanh controlbar bên trên -->
+                    <materialDesign:ColorZone
                     MouseDown="Main_W_MouseDown"
                     Mode="PrimaryLight"
                     Padding="10"
                     DockPanel.Dock="Top">
-                    <DockPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <ToggleButton
+                        <DockPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <ToggleButton
                                 x:Name="MenuToggleButton"
                                 IsChecked="False"
                                 Style="{StaticResource MaterialDesignHamburgerToggleButton}"/>
-                            <Button
+                                <Button
                                 Command="{Binding Load_home_Command}"
                                 Margin="30,0,0,0"
                                 Content="{materialDesign:PackIcon Kind=Home, Size=30}"
                                 Style="{StaticResource MaterialDesignToolForegroundButton}"/>
-                        </StackPanel>
-                        <StackPanel
+                            </StackPanel>
+                            <StackPanel
                             Orientation="Horizontal"
                             DockPanel.Dock="Right">
-                            <Button
+                                <Button
                                 Content="{materialDesign:PackIcon Kind=Minimize}"
                                 Style="{StaticResource MaterialDesignPaperLightButton}" Click="miniW_btn" />
-                            <Button
+                                <Button
                                 Margin="4 0 4 0"
                                 Content="{materialDesign:PackIcon Kind=Maximize}"
                                 Style="{StaticResource MaterialDesignPaperLightButton}" Click="maxW_btn" />
-                            <Button
+                                <Button
                                 Content="{materialDesign:PackIcon Kind=Close}"
                                 Style="{StaticResource MaterialDesignPaperLightButton}" Click="closeW_btn" />
 
-                        </StackPanel>
-                        <TextBlock
+                            </StackPanel>
+                            <TextBlock
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             FontSize="25"
                             Text="Nhà may G W E N"/>
-                    </DockPanel>
-                </materialDesign:ColorZone>
-                
-                <!-- màn hình làm việc chính-->
-                <Grid>
-                    <ContentControl
+                        </DockPanel>
+                    </materialDesign:ColorZone>
+
+                    <!-- màn hình làm việc chính-->
+                    <Grid>
+                        <ContentControl
                         x:Name="currentview"
                         Margin="15"/>
-                </Grid>
-            </DockPanel>
+                    </Grid>
+                </DockPanel>
 
-        </materialDesign:DrawerHost>
-    </materialDesign:DialogHost>
+            </materialDesign:DrawerHost>
+        </materialDesign:DialogHost>
+
+    </materialDesign:TransitioningContent>
 </Window>

@@ -11,6 +11,7 @@ namespace Final_proj_CSDL.Models
         private string _diachi;
         private string _mail;
         private string _chucvu;
+        private bool _hoatdong;
 
         public int TK_id { get => _TK_id; set => _TK_id = value; }
         public string TenTK { get => _tenTK; set => _tenTK = value; }
@@ -20,5 +21,6 @@ namespace Final_proj_CSDL.Models
         public string Diachi { get => _diachi; set => _diachi = value; }
         public string Mail { get => _mail; set => _mail = value; }
         public string Chucvu { get => _chucvu; set => _chucvu = value; }
+        public bool Hoatdong { get => _hoatdong; set => _hoatdong = value; }
     }
 }
