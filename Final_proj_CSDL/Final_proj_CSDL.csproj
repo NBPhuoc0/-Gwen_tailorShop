@@ -73,9 +73,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DAL\ChiTietHD_DAO.cs" />
+    <Compile Include="DAL\HoaDonDAO.cs" />
+    <Compile Include="DAL\PhanCongDAO.cs" />
+    <Compile Include="DAL\SanPhamDAO.cs" />
     <Compile Include="DAL\TaiKhoanDAO.cs" />
     <Compile Include="DAL\XuLySqlServer.cs" />
-    <Compile Include="Models\DonHang_Models.cs" />
+    <Compile Include="Models\bang_CTHD_Models.cs" />
+    <Compile Include="Models\CTHD_Models.cs" />
+    <Compile Include="Models\HoaDon_Models.cs" />
     <Compile Include="Models\PhanCong_Models.cs" />
     <Compile Include="Models\SanPham_Models.cs" />
     <Compile Include="Models\TaiKhoan_Models.cs" />
@@ -90,6 +96,7 @@
     <Compile Include="ViewModels\SanPham_VM.cs" />
     <Compile Include="ViewModels\TaiKhoan_VM.cs" />
     <Compile Include="ViewModels\data_temp.cs" />
+    <Compile Include="ViewModels\XemsuaTK_VM.cs" />
     <Compile Include="Views\home_view.xaml.cs">
       <DependentUpon>home_view.xaml</DependentUpon>
     </Compile>
@@ -99,11 +106,11 @@
     <Compile Include="Views\Main_Window.xaml.cs">
       <DependentUpon>Main_Window.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NV\phancong_nv_view.xaml.cs">
-      <DependentUpon>phancong_nv_view.xaml</DependentUpon>
+    <Compile Include="Views\NV\nv_phancong_view.xaml.cs">
+      <DependentUpon>nv_phancong_view.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\QL\phancong_ql_view.xaml.cs">
-      <DependentUpon>phancong_ql_view.xaml</DependentUpon>
+    <Compile Include="Views\QL\ql_CTHD_view.xaml.cs">
+      <DependentUpon>ql_CTHD_view.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\QL\ql_don_view.xaml.cs">
       <DependentUpon>ql_don_view.xaml</DependentUpon>
@@ -111,11 +118,23 @@
     <Compile Include="Views\QL\ql_nhansu_view.xaml.cs">
       <DependentUpon>ql_nhansu_view.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\QL\ql_nhansu_xemct_view.xaml.cs">
+      <DependentUpon>ql_nhansu_xemct_view.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\QL\ql_sp_themsp_view.xaml.cs">
+      <DependentUpon>ql_sp_themsp_view.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\QL\ql_sp_view.xaml.cs">
       <DependentUpon>ql_sp_view.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\QL\ql_taodon_view.xaml.cs">
       <DependentUpon>ql_taodon_view.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\QL\resetMK_view.xaml.cs">
+      <DependentUpon>resetMK_view.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ThongBao_W.xaml.cs">
+      <DependentUpon>ThongBao_W.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +173,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UIresources\UIdataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UIresources\UIitems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\home_view.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -166,11 +193,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\NV\phancong_nv_view.xaml">
+    <Page Include="Views\NV\nv_phancong_view.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\QL\phancong_ql_view.xaml">
+    <Page Include="Views\QL\ql_CTHD_view.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -182,6 +209,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\QL\ql_nhansu_xemct_view.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\QL\ql_sp_themsp_view.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\QL\ql_sp_view.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -190,8 +225,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\QL\resetMK_view.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ThongBao_W.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="UIresources\default.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.6.1\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.6.1\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

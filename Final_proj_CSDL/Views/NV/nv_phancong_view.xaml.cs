@@ -10,21 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Final_proj_CSDL.Views.NV
 {
     /// <summary>
-    /// Interaction logic for phancong_nv_view.xaml
+    /// Interaction logic for nv_phancong_view.xaml
     /// </summary>
-    public partial class phancong_nv_view : UserControl
+    public partial class nv_phancong_view : Window
     {
-        public static phancong_nv_view phancongNV;
-        public phancong_nv_view()
+        public nv_phancong_view()
         {
             InitializeComponent();
-            phancongNV = this;
         }
     }
 }

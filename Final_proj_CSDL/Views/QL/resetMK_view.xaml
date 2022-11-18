@@ -1,0 +1,63 @@
+﻿<Window x:Class="Final_proj_CSDL.Views.QL.resetMK_view"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Final_proj_CSDL.Views.QL"
+        mc:Ignorable="d"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        Title="resetMK_view" Height="300" Width="600"
+        xmlns:ViewModels="clr-namespace:Final_proj_CSDL.ViewModels"
+        TextElement.FontSize="20"
+        TextElement.FontFamily="Segoe UI"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True" Background="Transparent"
+        WindowStyle="None" ResizeMode="NoResize">
+    <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect ExpandIn, Duration = 0:0:0.5 }">
+        <Grid>
+            <Border CornerRadius="10" Grid.RowSpan="2">
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="{StaticResource color3}" Offset="0"/>
+                        <GradientStop Color="{StaticResource color1}" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <DockPanel>
+                <Label DockPanel.Dock="Top" Margin="10" HorizontalAlignment="Center" Content="RESET MẬT KHẨU" />
+                <Grid DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Mật khẩu mới" Style="{StaticResource TBl1}"/>
+                    <TextBlock Grid.Row="1" Text="Xác nhận mật khẩu" Style="{StaticResource TBl1}"/>
+
+                    <PasswordBox Grid.Row="0" Grid.Column="1" x:Name="mk1" 
+                                 Style="{StaticResource MaterialDesignFilledPasswordBox}" 
+                                 PasswordChanged="checkmk2"
+                                 HorizontalAlignment="Left" MinWidth="250"/>
+                    <PasswordBox Grid.Row="1" Grid.Column="1" x:Name="mk2"
+                                 Style="{StaticResource MaterialDesignFilledPasswordBox}" 
+                                 PasswordChanged="checkmk2"
+                                 HorizontalAlignment="Left" MinWidth="250"/>
+                </Grid>
+                <Label DockPanel.Dock="Top" x:Name="lbCanhbao" Margin="10"
+                       Foreground="Red" Visibility="Collapsed"
+                       Content="Xác nhận lại mật khẩu không trùng khớp" HorizontalAlignment="Center"/>
+                <StackPanel Margin="5" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Width="100" Content="Xác Nhận" Margin="20 0" Click="xacnhan"
+                        Style="{StaticResource MaterialDesignOutlinedDarkButton}"/>
+                    <Button Width="100" Content="E X I T" Margin="20 0" Click="exit"
+                        Style="{StaticResource MaterialDesignOutlinedSecondaryLightButton}"/>
+                </StackPanel>
+            </DockPanel>
+        </Grid>
+    </materialDesign:TransitioningContent>
+</Window>

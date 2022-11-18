@@ -4,9 +4,13 @@
     <!-- background -->
     <Color x:Key="color1">Teal</Color>
     <Color x:Key="color2">Salmon</Color>
-    
+    <Color x:Key="color3">#8ad6cc</Color>
+    <Color x:Key="color4">PeachPuff</Color>
     <!-- font color -->
     <SolidColorBrush x:Key="fcolor1" Color="LightSteelBlue"/>
     <SolidColorBrush x:Key="fcolor2" Color="PeachPuff"/>
+    <SolidColorBrush x:Key="fcolor3" Color="#8ad6cc"/>
+    <SolidColorBrush x:Key="fcolor4" Color="#f97171"/>
+
 
 </ResourceDictionary>

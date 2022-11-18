@@ -11,12 +11,22 @@
              TextElement.Foreground="{StaticResource fcolor1}"
              TextElement.FontFamily="Segoe UI"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              
              d:DesignHeight="450" d:DesignWidth="800">
 
     <UserControl.DataContext>
         <ViewModels:TaiKhoan_VM/>
     </UserControl.DataContext>
+    
+    <b:Interaction.Triggers>
+        <b:EventTrigger EventName="Loaded">
+            <b:InvokeCommandAction
+                CommandParameter="{Binding}"
+                Command="{Binding load_ns_Command}"/>
+        </b:EventTrigger>
+    </b:Interaction.Triggers>
+
 
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration = 0:0:1 }">
         <!--OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration = 0:0:1.4 }"-->
@@ -25,97 +35,123 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="25"
+                Text="Quản lý nhân sự"/>
             <!-- nút chức năng -->
-            <DockPanel Margin="10">
-                <StackPanel
-                    Orientation="Horizontal"
-                    DockPanel.Dock="Right">
-                    <Button
-                        Content="{materialDesign:PackIcon Kind=AccountMultiplePlus}"
-                        Style="{StaticResource MaterialDesignFlatMidBgButton}" 
-                        ToolTip="Thêm tài khoản"/>
-                    <Button
-                        Margin="4 0 4 0"
-                        Content="{materialDesign:PackIcon Kind=AccountMultipleRemove}"
-                        Style="{StaticResource MaterialDesignFlatMidBgButton}"
-                        materialDesign:HintAssist.Hint="Xoá tài khoản"/>
-                    <Button
-                        Content="{materialDesign:PackIcon Kind=AccountEdit}"
-                        Style="{StaticResource MaterialDesignFlatMidBgButton}"/>
+            <StackPanel Margin="10" Grid.Column="1" Grid.Row="1" Width="80"
+                Orientation="Vertical">
+                <Button
+                    Margin="0 10"
+                    Command="{Binding them_tk_Command}"
+                    Content="{materialDesign:PackIcon Kind=AccountMultiplePlus}"
+                    Style="{StaticResource MaterialDesignFlatMidBgButton}" 
+                    ToolTip="Thêm tài khoản"/>
+                <Button
+                    Margin="0 10"
+                    Command="{Binding xoa_tk_Command}"
+                    CommandParameter="{Binding SelectedTaiKhoan}"
+                    Content="{materialDesign:PackIcon Kind=AccountMultipleRemove}"
+                    Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                    ToolTip="Xoá tài khoản"/>
+                <Button
+                    Margin="0 10"
+                    Command="{Binding xem_cttk_Command}"
+                    CommandParameter="{Binding SelectedTaiKhoan}"
+                    Content="{materialDesign:PackIcon Kind=CardAccountDetails}"
+                    Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                    ToolTip="Xem chi tiết tài khoản"/>
+                <Button
+                    Margin="0 10"
+                    Command="{Binding thangchuc_Command}"
+                    CommandParameter="{Binding SelectedTaiKhoan}"
+                    Content="{materialDesign:PackIcon Kind=AccountArrowUp}"
+                    Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                    ToolTip="Thăng chức"/>
+                <Button
+                    Margin="0 10"
+                    Command="{Binding giangchuc_Command}"
+                    CommandParameter="{Binding SelectedTaiKhoan}"
+                    Content="{materialDesign:PackIcon Kind=AccountArrowDown}"
+                    Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                    ToolTip="Giáng chức"/>
+                <Button
+                    Margin="0 10"
+                    Command="{Binding resetMK_Command}"
+                    CommandParameter="{Binding SelectedTaiKhoan}"
+                    Content="{materialDesign:PackIcon Kind=AccountConvert}"
+                    Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                    ToolTip="Reset mật khẩu"/>
+            </StackPanel>
 
-                </StackPanel>
-                <TextBlock
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontSize="25"
-                            Text="Quản lý nhân sự"/>
-            </DockPanel>
-
-            <!-- phần xem -->
+            <!-- phần xem dữ liệu -->
             <DataGrid x:Name="DataGrid"
                       Grid.Row="1"
                       IsReadOnly="True"
                       AutoGenerateColumns="False"
+                      SelectionMode="Single"
                       ItemsSource="{Binding DanhSachTaiKhoan, UpdateSourceTrigger=PropertyChanged}"  
                       SelectedItem="{Binding SelectedTaiKhoan, Mode=OneWayToSource}"
-                      BorderBrush="{StaticResource fcolor1}"
-                      ColumnHeaderStyle="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
-                      FontSize="25"
-                      OpacityMask="Black">
+                      FontSize="20">
+                <!-- bỏ chọn-->
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="MouseDown">
+                        <b:InvokeCommandAction
+                            CommandParameter="{Binding}"
+                            Command="{Binding load_ns_Command}"/>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+                <!-- trigger chọn vào 1 tk-->
                 <DataGrid.Resources>
-                    <Style TargetType="{x:Type DataGridCell}">
+                    <Style TargetType="DataGridCell">
                         <Style.Triggers>
                             <Trigger Property="DataGridCell.IsSelected" Value="True">
-                                <Setter Property="Background" Value="DarkSalmon" />
+                                <Setter Property="Background" Value="{StaticResource fcolor4}"/>
                             </Trigger>
                         </Style.Triggers>
-                        <Setter Property="HorizontalAlignment" Value="Center"/>
-
                     </Style>
                 </DataGrid.Resources>
-                
+                <!-- set row màu mè -->
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="{StaticResource fcolor3}"/>
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Setter Property="IsEnabled" Value="{Binding Hoatdong}"/>
+                    </Style>
+                    
+                </DataGrid.RowStyle>
+                <!-- data -->
                 <DataGrid.Columns>
                     <DataGridTextColumn
                         Header="ID"
-                        Width="50"
+                        Width="70"
                         Binding="{Binding TK_id}"/>
                     <DataGridTextColumn
-                        Header="Tài Khoản"
-                        MinWidth="100"
+                        Header="Tên tài khoản"
                         Width="*"
-                        Binding="{Binding TenTK}">
-                        <DataGridTextColumn.CellStyle>
-                            <Style TargetType="DataGridCell">
-                                <Setter Property="HorizontalAlignment" Value="Left"/>
-                            </Style>
-                        </DataGridTextColumn.CellStyle>
-                    </DataGridTextColumn>
+                        Binding="{Binding TenTK}"/>
                     <DataGridTextColumn
                         Header="Họ và tên"
-                        MinWidth="100"
                         Width="*"
-                        Binding="{Binding Hoten}">
-                        <DataGridTextColumn.CellStyle>
-                            <Style TargetType="DataGridCell">
-                                <Setter Property="HorizontalAlignment" Value="Left"/>
-                            </Style>
-                        </DataGridTextColumn.CellStyle>
-
-                    </DataGridTextColumn>
+                        Binding="{Binding Hoten}"/>
                     <DataGridTextColumn
-                        Header="chức vụ"
-                        MaxWidth="80"
-                        Width="*"
-                        Binding="{Binding Chucvu}" FontStyle="Normal" FontWeight="Normal" Visibility="Visible">
-                    </DataGridTextColumn>
+                        Header="Chức vụ"
+                        Width="110"
+                        Binding="{Binding Chucvu}"/>
                     <DataGridCheckBoxColumn
                         ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
                         Header="Đã nghỉ việc"
-                        Width="110"
-                        Binding="{Binding Hoatdong}"/>
+                        Width="150"
+                        Binding="{Binding Nghiviec}">
+                    </DataGridCheckBoxColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
-
     </materialDesign:TransitioningContent>
 </UserControl>

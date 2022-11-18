@@ -1,0 +1,61 @@
+﻿<Window x:Class="Final_proj_CSDL.Views.ThongBao_W"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Final_proj_CSDL.Views"
+        mc:Ignorable="d"
+        Title="ThongBao_W" Height="330" Width="450"
+        xmlns:ViewModels="clr-namespace:Final_proj_CSDL.ViewModels"
+        TextElement.Foreground="{StaticResource fcolor1}"
+        TextElement.FontSize="25"
+        TextElement.FontFamily="Segoe UI"
+        TextElement.FontWeight="Regular"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True" Background="Transparent"
+        WindowStyle="None" ResizeMode="NoResize">
+    <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect ExpandIn, Duration = 0:0:0.5 }">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Border CornerRadius="20" Grid.RowSpan="2">
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="{StaticResource color1}" Offset="0"/>
+                        <GradientStop Color="{StaticResource color2}" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <StackPanel VerticalAlignment="Center">
+                <materialDesign:PackIcon
+                    x:Name="icon"
+                    HorizontalAlignment="Center"
+                    Height="100" Width="100"/>
+                <TextBlock x:Name="ndTB"
+                           FontSize="30"
+                           HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center"/>
+            </StackPanel>
+            <StackPanel x:Name="tb_yn" Visibility="Collapsed" HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1">
+                <Button Margin="40" Width="110" Height="30" 
+                        Content="Y E S" 
+                        CommandParameter="{Binding ElementName=MK}"
+                        Style="{StaticResource MaterialDesignFlatMidBgButton}" 
+                        Click="yes_checked"/>
+
+                <Button Margin="10" Width="110" Height="30" 
+                        Content="N O" 
+                        Style="{StaticResource MaterialDesignFlatSecondaryMidBgButton}"
+                        Click="exit"/>
+            </StackPanel>
+            <StackPanel x:Name="tb_close" Visibility="Collapsed" HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1">
+                <Button Margin="10" Width="110" Height="30" 
+                        Content="C L O S E" 
+                        Style="{StaticResource MaterialDesignFlatSecondaryMidBgButton}"
+                        Click="exit"/>
+            </StackPanel>
+        </Grid>
+    </materialDesign:TransitioningContent>
+</Window>

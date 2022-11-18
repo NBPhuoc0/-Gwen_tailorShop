@@ -1,23 +1,23 @@
-﻿using System.Data.SqlTypes;
-
+﻿using System;
+    
 namespace Final_proj_CSDL.Models
 {
-    internal class PhanCong_Models
+    public class PhanCong_Models
     {
-        private int _id_DS;
-        private int _id_HD;
-        private int _id_QL;
-        private int _id_NV;
-        private string _mota_CV;
-        private string _trangthai;
-        private SqlDateTime _ngaytao;
+        private int _PC_id;
+        private int _HD_id;
+        private int _QL_id;
+        private int _NV_id;
+        private string _mota;
+        private bool _trangthai;
+        private DateTime _ngaytao;
 
-        public int Id_DS { get => _id_DS; set => _id_DS = value; }
-        public int Id_HD { get => _id_HD; set => _id_HD = value; }
-        public int Id_QL { get => _id_QL; set => _id_QL = value; }
-        public int Id_NV { get => _id_NV; set => _id_NV = value; }
-        public string Mota_CV { get => _mota_CV; set => _mota_CV = value; }
-        public string Trangthai { get => _trangthai; set => _trangthai = value; }
-        public SqlDateTime Ngaytao { get => _ngaytao; set => _ngaytao = value; }
+        public int PC_id { get => _PC_id; set => _PC_id = value; }
+        public int HD_id { get => _HD_id; set => _HD_id = value; }
+        public int QL_id { get => _QL_id; set => _QL_id = value; }
+        public int NV_id { get => _NV_id; set => _NV_id = value; }
+        public string Mota { get => _mota; set => _mota = value; }
+        public bool Trangthai { get => _trangthai; set => _trangthai = value; }
+        public DateTime Ngaytao { get => _ngaytao; set => _ngaytao = value; }
     }
 }

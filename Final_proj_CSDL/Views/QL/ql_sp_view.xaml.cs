@@ -26,5 +26,6 @@ namespace Final_proj_CSDL.Views.QL
             InitializeComponent();
             sp = this;
         }
+
     }
 }

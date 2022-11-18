@@ -24,7 +24,7 @@ namespace Final_proj_CSDL.Views.QL
         public ql_nhansu_view()
         {
             InitializeComponent();
-            nhansu = this;
+            nhansu = this;         
         }
     }
 }

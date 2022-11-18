@@ -12,8 +12,11 @@
             
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/UIresources/UIcolor.xaml"/>
+                <ResourceDictionary Source="/UIresources/UIdataGrid.xaml"/>
+                <ResourceDictionary Source="/UIresources/UIitems.xaml"/>
                 <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Teal" SecondaryColor="Red"  />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>

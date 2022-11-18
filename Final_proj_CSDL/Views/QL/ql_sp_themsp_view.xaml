@@ -1,0 +1,72 @@
+﻿<Window x:Class="Final_proj_CSDL.Views.QL.ql_sp_themsp_view"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Final_proj_CSDL.Views.QL"
+        mc:Ignorable="d" 
+        xmlns:ViewModels="clr-namespace:Final_proj_CSDL.ViewModels"
+        TextElement.FontSize="15"
+        TextElement.Foreground="{StaticResource fcolor3}"
+        TextElement.FontFamily="Segoe UI"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"     
+        Background="Transparent"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize"
+        Title="ql_sp_themsp_view" Height="600" Width="900">
+
+    <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect ExpandIn, Duration = 0:0:0.5 }">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border Background="{StaticResource fcolor3}" Grid.Column="1" CornerRadius="0 10 10 0"/>
+            <Border Background="WhiteSmoke" CornerRadius="10 0 0 10"/>
+
+            <DockPanel Grid.ColumnSpan="2">
+                <Label DockPanel.Dock="Top" Content="thêm sản phẩm mới" FontSize="30"
+                       HorizontalAlignment="Center" Margin="0 50 0 0"/>
+                <Grid DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" MaxWidth="450">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Tên mẫu" Style="{StaticResource TBl1}"/>
+                    <TextBlock Grid.Row="1" Text="Mô tả về sản phẩm" Style="{StaticResource TBl1}"/>
+                    <TextBlock Grid.Row="2" Text="Giá" Style="{StaticResource TBl1}"/>
+
+                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="tensp" Text="{Binding sp.TenSP,Mode=OneWayToSource}" />
+                    <TextBox Grid.Row="1" Grid.Column="1" MinHeight="100" MinWidth="225" x:Name="mota"
+                             TextWrapping="Wrap"
+                             Text="{Binding sp.Mota,Mode=OneWayToSource}"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" x:Name="giasp"
+                             Text="{Binding sp.Gia, Mode=OneWayToSource, StringFormat=\{0:N\}}" PreviewTextInput="isnumber" />
+                </Grid>
+
+                <DockPanel DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" MaxWidth="450">
+                    <Image DockPanel.Dock="Top" Margin="20" Name="anh" 
+                           MaxHeight="400" Width="410" 
+                           MouseLeftButtonDown="click_anh" >
+                    </Image>
+                    <StackPanel Margin="20"
+                        Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button 
+                            Margin="10 0"
+                            Content="HUỶ" Click="exit"/>
+                        <Button 
+                            Margin="10 0"
+                            Content="LƯU" Click="save" />
+                    </StackPanel>
+                </DockPanel>
+            </DockPanel>
+
+        </Grid>
+    </materialDesign:TransitioningContent>
+</Window>

@@ -47,12 +47,13 @@ namespace Final_proj_CSDL.ViewModels
 			//đến trang xem mẫu thiết kế - QL
 			Load_SPmau_Command = new RelayCommand<object>(o =>
 			{
-                Main_Window.main_w.currentview.Content = new ql_sp_view();
+				ql_sp_view sp = new ql_sp_view();
+                Main_Window.main_w.currentview.Content = sp;
 			});
 			//đến trang xem phân công công việc - NV
 			Load_phancong_nv_Command = new RelayCommand<object>(o =>
 			{
-                Main_Window.main_w.currentview.Content = new phancong_nv_view();
+                Main_Window.main_w.currentview.Content = new nv_phancong_view();
 			});
         }
 	}

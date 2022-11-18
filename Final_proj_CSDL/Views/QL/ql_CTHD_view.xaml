@@ -1,0 +1,83 @@
+﻿<Window x:Class="Final_proj_CSDL.Views.QL.ql_CTHD_view"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Final_proj_CSDL.Views.QL"
+        mc:Ignorable="d"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:ViewModels="clr-namespace:Final_proj_CSDL.ViewModels"
+        TextElement.FontSize="22"
+        TextElement.Foreground="Black"
+        TextElement.FontFamily="Segoe UI"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Background="{StaticResource fcolor3}"
+        WindowStyle="None" WindowStartupLocation="CenterScreen"  ResizeMode="NoResize"
+        d:DesignHeight="450" d:DesignWidth="800">
+    
+    <materialDesign:TransitioningContent>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+                
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" FontSize="25" FontWeight="DemiBold"
+                   Content="Chi tiết hoá đơn" HorizontalAlignment="Center"/>
+
+            <DataGrid Grid.Row="1" Grid.Column="0" x:Name="dataG" IsReadOnly="True"
+                      AutoGenerateColumns="False" SelectionChanged="selectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn 
+                        Header="tên sản phẩm"
+                        Binding="{Binding TenSP}"/>
+
+                    <DataGridTextColumn 
+                        Header="Số lượng"
+                        Binding="{Binding Soluong}"/>
+
+                    <DataGridTextColumn
+                        Header="Giá"
+                        Binding="{Binding Gia}"/>
+                    
+                    <DataGridTextColumn
+                        Header="Thành tiền"
+                        Binding="{Binding Thanhtien}"/>
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Button Grid.Row="0" Grid.Column="1" Margin="10"
+                    Content="X" Click="exit_btn"
+                    HorizontalAlignment="Right" Width="50"/>
+
+            <StackPanel Margin="10" Grid.Column="1" Grid.Row="1" Width="80"
+                Orientation="Vertical">
+                <Button
+                    Margin="0 10"
+                    Content="{materialDesign:PackIcon Kind=Delete}"
+                    Style="{StaticResource MaterialDesignFlatMidBgButton}" 
+                    Click="xoa_cthd"
+                    ToolTip="Thêm đơn hàng"/>
+
+            </StackPanel>
+
+            <StackPanel Height="100" Grid.Row="2" Grid.Column="0" Margin="10"
+                        Orientation="Horizontal">
+                <GroupBox Header="ID sản phẩm" Width="auto" Margin="20 0">
+                    <TextBox x:Name="them_id" />
+                </GroupBox>
+                <GroupBox Header="Số lượng" Width="auto" Margin="20 0">
+                    <TextBox x:Name="them_soluong"/>
+                </GroupBox>
+                <Button Content="thêm" Click="them_click"/>
+            </StackPanel>
+        </Grid>
+    </materialDesign:TransitioningContent>
+</Window>

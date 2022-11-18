@@ -23,5 +23,6 @@ namespace Final_proj_CSDL.ViewModels
         {
             InitializeComponent();
         }
+
     }
 }

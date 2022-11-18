@@ -10,6 +10,7 @@ namespace Final_proj_CSDL.ViewModels
 {
     static class data_temp
     {
-        public static TaiKhoan_Models tk_md = new TaiKhoan_Models();
+        public static TaiKhoan_Models tk_md;
+        public static TaiKhoan_Models tk_sua;
     }
 }
