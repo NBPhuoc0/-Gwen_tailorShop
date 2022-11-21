@@ -26,10 +26,10 @@
         <Grid>
             <Border CornerRadius="10">
                 <Border.Background>
-                    <RadialGradientBrush>
-                        <GradientStop Color="{StaticResource color3}" Offset="0"/>
+                    <LinearGradientBrush>
+                        <GradientStop Color="{StaticResource color4}" Offset="0"/>
                         <GradientStop Color="{StaticResource color1}" Offset="1"/>
-                    </RadialGradientBrush>
+                    </LinearGradientBrush>
                 </Border.Background>
             </Border>
             <DockPanel Margin="20 20 20 0" HorizontalAlignment="Center" VerticalAlignment="Top">

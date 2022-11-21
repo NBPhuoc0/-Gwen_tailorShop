@@ -2,9 +2,6 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Final_proj_CSDL.DAL
 {
@@ -14,8 +11,28 @@ namespace Final_proj_CSDL.DAL
         {
             string json = JsonConvert.SerializeObject(LoadData_vw("vw_load_hoadon_tt"));
             return JsonConvert.DeserializeObject<List<HoaDon_Models>>(json);
-
         }
+        public List<HoaDon_Models> vw_load_hd_chuapc()
+        {
+            string json = JsonConvert.SerializeObject(LoadData_vw("vw_load_hd_chuapc"));
+            return JsonConvert.DeserializeObject<List<HoaDon_Models>>(json);
+        }
+        public List<HoaDon_Models> vw_load_hd_dapc()
+        {
+            string json = JsonConvert.SerializeObject(LoadData_vw("vw_load_hd_dapc"));
+            return JsonConvert.DeserializeObject<List<HoaDon_Models>>(json);
+        }
+        public List<HoaDon_Models> vw_load_hd_chogiao()
+        {
+            string json = JsonConvert.SerializeObject(LoadData_vw("vw_load_hd_chogiao"));
+            return JsonConvert.DeserializeObject<List<HoaDon_Models>>(json);
+        }
+        public List<HoaDon_Models> vw_load_hd_dagiao()
+        {
+            string json = JsonConvert.SerializeObject(LoadData_vw("vw_load_hd_dagiao"));
+            return JsonConvert.DeserializeObject<List<HoaDon_Models>>(json);
+        }
+         
         public List<SanPham_Models> vw_load_sanpham()
         {
             string json = JsonConvert.SerializeObject(LoadData_vw("vw_load_sanpham"));
@@ -27,6 +44,7 @@ namespace Final_proj_CSDL.DAL
             return JsonConvert.DeserializeObject<List<TaiKhoan_Models>>(json);
 
         }
+        
         public bool sp_themhd(HoaDon_Models hd_md)
         {
             int parameter = 5;
@@ -68,6 +86,18 @@ namespace Final_proj_CSDL.DAL
             values[3] = hd_md.Mota;
             return Execute_sp("sp_suahd", name, values, parameter);
         }
+        public bool sp_XN_giao_hd(int hd_id)
+        {
+            int parameter = 2;
+            string[] name = new string[parameter];
+            object[] values = new object[parameter];
+            name[0] = "@HD_id";
+            name[1] = "@ngaygiao";
+            values[0] = hd_id;
+            values[1] = DateTime.Now;
+            return Execute_sp("sp_XacNhanPC_hoanthanh", name, values, parameter);
+        }
+
 
     }
 }

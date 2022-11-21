@@ -4,12 +4,40 @@ using System.Collections.Generic;
 
 namespace Final_proj_CSDL.DAL
 {
-    internal class PhanCongDAO :XuLySqlServer
+    public class PhanCongDAO :XuLySqlServer
     {
         public List<PhanCong_Models> vw_load_phancong()
         {
             string json = JsonConvert.SerializeObject(LoadData_vw("vw_load_phancong"));
             return JsonConvert.DeserializeObject<List<PhanCong_Models>>(json);
+        }
+        public List<HoaDon_Models> vw_load_HD_id()
+        {
+            string json = JsonConvert.SerializeObject(LoadData_vw("vw_load_HD_id"));
+            return JsonConvert.DeserializeObject<List<HoaDon_Models>>(json);
+        }
+        public List<TaiKhoan_Models> vw_load_TK_QL()
+        {
+            string json = JsonConvert.SerializeObject(LoadData_vw("vw_load_TK_QL"));
+            return JsonConvert.DeserializeObject<List<TaiKhoan_Models>>(json);
+        }
+        public List<TaiKhoan_Models> vw_load_TK_NV()
+        {
+            string json = JsonConvert.SerializeObject(LoadData_vw("vw_load_TK_NV"));
+            return JsonConvert.DeserializeObject<List<TaiKhoan_Models>>(json);
+        }
+
+
+        public List<PhanCong_Models> fn_pcBy_HD_id(int HD_id)
+        {
+            int parameter = 1;
+            string[] name = new string[parameter];
+            object[] values = new object[parameter];
+            name[0] = "@HD_id";
+            values[0] = HD_id;
+            string json = JsonConvert.SerializeObject(Execute_fn("fn_pcBy_HD_id", name, values, parameter));
+            return JsonConvert.DeserializeObject<List<PhanCong_Models>>(json);
+
         }
         public bool sp_phancongcongviec(PhanCong_Models pc)
         {

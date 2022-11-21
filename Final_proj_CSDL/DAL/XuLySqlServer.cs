@@ -3,7 +3,7 @@ using System.Data;
 
 namespace Final_proj_CSDL.DAL
 {
-    internal class XuLySqlServer
+    public class XuLySqlServer
     {
         private string ChuoiKetNoi = @"Data Source=NBP;Initial Catalog=gwen;Integrated Security=True";
         public DataTable LoadData_sp(string sql)

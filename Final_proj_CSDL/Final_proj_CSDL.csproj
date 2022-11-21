@@ -78,13 +78,14 @@
     <Compile Include="DAL\PhanCongDAO.cs" />
     <Compile Include="DAL\SanPhamDAO.cs" />
     <Compile Include="DAL\TaiKhoanDAO.cs" />
+    <Compile Include="DAL\XacNhanPC_DAO.cs" />
     <Compile Include="DAL\XuLySqlServer.cs" />
-    <Compile Include="Models\bang_CTHD_Models.cs" />
     <Compile Include="Models\CTHD_Models.cs" />
     <Compile Include="Models\HoaDon_Models.cs" />
     <Compile Include="Models\PhanCong_Models.cs" />
     <Compile Include="Models\SanPham_Models.cs" />
     <Compile Include="Models\TaiKhoan_Models.cs" />
+    <Compile Include="Models\XacNhanPC_Models.cs" />
     <Compile Include="temp.xaml.cs">
       <DependentUpon>temp.xaml</DependentUpon>
     </Compile>
@@ -120,6 +121,9 @@
     </Compile>
     <Compile Include="Views\QL\ql_nhansu_xemct_view.xaml.cs">
       <DependentUpon>ql_nhansu_xemct_view.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\QL\ql_PhancongCV_view.xaml.cs">
+      <DependentUpon>ql_PhancongCV_view.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\QL\ql_sp_themsp_view.xaml.cs">
       <DependentUpon>ql_sp_themsp_view.xaml</DependentUpon>
@@ -210,6 +214,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\QL\ql_nhansu_xemct_view.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\QL\ql_PhancongCV_view.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

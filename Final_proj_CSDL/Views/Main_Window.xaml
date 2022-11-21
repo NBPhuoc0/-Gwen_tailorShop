@@ -147,7 +147,7 @@
                     <Grid>
                         <ContentControl
                         x:Name="currentview"
-                        Margin="15"/>
+                        Margin="15" Height="810"/>
                     </Grid>
                 </DockPanel>
 

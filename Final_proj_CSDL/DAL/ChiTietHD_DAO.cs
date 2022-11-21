@@ -10,7 +10,7 @@ namespace Final_proj_CSDL.DAL
 {
     internal class ChiTietHD_DAO : XuLySqlServer
     {
-        public List<bang_CTHD_Models> fn_vw_cthd(int id)
+        public List<CTHD_Models> fn_vw_cthd(int id)
         {
             int parameter = 1;
             string[] name = new string[parameter];
@@ -18,7 +18,12 @@ namespace Final_proj_CSDL.DAL
             name[0] = "@HD_id";
             values[0] = id;
             string json = JsonConvert.SerializeObject(Execute_fn("fn_vw_cthd", name, values, parameter));
-            return JsonConvert.DeserializeObject<List<bang_CTHD_Models>>(json);
+            return JsonConvert.DeserializeObject<List<CTHD_Models>>(json);
+        }
+        public List<SanPham_Models> vw_load_sanpham()
+        {
+            string json = JsonConvert.SerializeObject(LoadData_vw("vw_load_sanpham"));
+            return JsonConvert.DeserializeObject<List<SanPham_Models>>(json);
         }
         public bool sp_themcthd(CTHD_Models cthd_md)
         {

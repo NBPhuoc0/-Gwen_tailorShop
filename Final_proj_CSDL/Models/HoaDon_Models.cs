@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Final_proj_CSDL.Models
 {
-    internal class HoaDon_Models
+    public class HoaDon_Models
     {
         private int _hd_id;
         private string _tenKH;

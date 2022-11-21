@@ -12,6 +12,7 @@ namespace Final_proj_CSDL.DAL
             string json = JsonConvert.SerializeObject(LoadData_vw("vw_load_TaiKhoan"));
             return JsonConvert.DeserializeObject<List<TaiKhoan_Models>>(json);
         }
+            
         public bool sp_themtk(TaiKhoan_Models tk_md)
         {
             int parameter = 9;

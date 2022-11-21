@@ -14,24 +14,44 @@ namespace Final_proj_CSDL.ViewModels
     internal class DonHang_VM : baseVM
     {
         HoaDonDAO hdDao = new HoaDonDAO();
+        PhanCongDAO pcDao = new PhanCongDAO();
         List<HoaDon_Models> _danhsachHoaDon;
         HoaDon_Models _selectedHoaDon;
         List<SanPham_Models> _DanhSachSanPham;
+        List<PhanCong_Models> _DanhsachPhanCong;
+        PhanCong_Models _selectedPhanCong;
         private string _nguoitao;
 
         public ICommand Load_dsHD_Command { get; set; }
+        public ICommand Load_dsHD_dapc_Command { get; set; }
+        public ICommand Load_dsHD_chuapc_Command { get; set; }
+        public ICommand Load_dsHD_chogiao_Command { get; set; }
+        public ICommand Load_dsHD_dagiao_Command { get; set; }
         public ICommand Load_taodon_Command { get; set; }
+        public ICommand Load_dsPC_theoHD_Command { get; set; }
         public ICommand Tao_don_Command { get; set; }
         public ICommand them_hd_Command { get; set; }
         public ICommand them_cthd_Command { get; set; }
         public ICommand Xoa_HD_Command { get; set; }
+        public ICommand PhanCongCV_Command { get; set; }
+        public ICommand Xoa_PC_Command { get; set; }
+        public ICommand XN_giao_Command { get; set; }
+
 
 
 
         public List<HoaDon_Models> DanhsachHoaDon { get => _danhsachHoaDon; set { _danhsachHoaDon = value; OnPropertyChanged("DanhsachHoaDon"); } }
-        public HoaDon_Models SelectedHoaDon { get => _selectedHoaDon; set { _selectedHoaDon = value; OnPropertyChanged("SelectedHoaDon"); } }
+        public HoaDon_Models SelectedHoaDon { get => _selectedHoaDon; 
+            set 
+            { 
+                _selectedHoaDon = value; 
+                OnPropertyChanged("SelectedHoaDon");
+                Load_dsPC_theoHD_Command.Execute(SelectedHoaDon);
+            } }
         public List<SanPham_Models> DanhSachSanPham { get => _DanhSachSanPham; set => _DanhSachSanPham = value; }
         public string Nguoitao { get => _nguoitao; set => _nguoitao = value; }
+        public List<PhanCong_Models> DanhsachPhanCong { get => _DanhsachPhanCong; set { _DanhsachPhanCong = value; OnPropertyChanged("DanhsachPhanCong"); } }
+        public PhanCong_Models SelectedPhanCong { get => _selectedPhanCong; set { _selectedPhanCong = value; OnPropertyChanged("SelectedPhanCong"); } }
 
         public DonHang_VM()
         {
@@ -40,6 +60,27 @@ namespace Final_proj_CSDL.ViewModels
             {
                 DanhsachHoaDon = hdDao.vw_load_hoadon_tt();
             });
+            Load_dsHD_dapc_Command = new RelayCommand<object>(p =>
+            {
+                DanhsachHoaDon = hdDao.vw_load_hd_dapc();
+            });
+            Load_dsHD_chuapc_Command = new RelayCommand<object>(p =>
+            {
+                DanhsachHoaDon = hdDao.vw_load_hd_chuapc();
+            });
+            Load_dsHD_chogiao_Command = new RelayCommand<object>(p =>
+            {
+                DanhsachHoaDon = hdDao.vw_load_hd_chogiao();
+            });
+            Load_dsHD_dagiao_Command = new RelayCommand<object>(p =>
+            {
+                DanhsachHoaDon = hdDao.vw_load_hd_dagiao();
+            });
+            Load_dsPC_theoHD_Command = new RelayCommand<HoaDon_Models>(p =>
+            {
+                DanhsachPhanCong = pcDao.fn_pcBy_HD_id(SelectedHoaDon.Hd_id);
+            });
+
             Load_taodon_Command = new RelayCommand<object>(o =>
             {
                 SelectedHoaDon = new HoaDon_Models();
@@ -71,6 +112,34 @@ namespace Final_proj_CSDL.ViewModels
                 {
                     hdDao.sp_xoahd(SelectedHoaDon.Hd_id);
                     Load_dsHD_Command.Execute(null);
+                }
+            });
+
+            PhanCongCV_Command = new RelayCommand<object>(p =>
+            {
+                if (SelectedHoaDon!=null)
+                {
+                    ql_PhancongCV_view pc = new ql_PhancongCV_view(SelectedHoaDon.Hd_id);
+                    pc.ShowDialog();
+                }
+            });
+            Xoa_PC_Command = new RelayCommand<object>(p =>
+            {
+                if (SelectedPhanCong != null)
+                {
+                    pcDao.sp_xoaphancong(SelectedPhanCong.PC_id);
+                }
+            });
+            XN_giao_Command = new RelayCommand<object>(p =>
+            {
+                if (SelectedHoaDon != null)
+                {
+                    ThongBao_W tb = new ThongBao_W("Xác nhận đã giao đơn hàng ?", 'x');
+                    tb.ShowDialog();
+                    if (tb.yes)
+                    {
+                        hdDao.sp_XN_giao_hd(SelectedHoaDon.Hd_id);
+                    }
                 }
             });
             

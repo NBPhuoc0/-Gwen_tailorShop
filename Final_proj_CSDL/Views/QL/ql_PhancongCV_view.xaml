@@ -1,0 +1,81 @@
+﻿<Window x:Class="Final_proj_CSDL.Views.QL.ql_PhancongCV_view"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Final_proj_CSDL.Views.QL"
+        mc:Ignorable="d" 
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:ViewModels="clr-namespace:Final_proj_CSDL.ViewModels"
+        TextElement.FontSize="30"
+        TextElement.FontFamily="Segoe UI"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True" Background="Transparent"
+        WindowStyle="None" ResizeMode="NoResize"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"        
+        Title="ql_PhancongCV_view" Height="450" Width="800">
+
+
+    <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect FadeIn, Duration = 0:0:1 }">
+        <Border CornerRadius="20">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0,0">
+                    <GradientStop Color="#FF8AD6CC"/>
+                    <GradientStop Color="PeachPuff" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <StackPanel Margin="20" 
+                        Orientation="Vertical" 
+                        HorizontalAlignment="Center">
+                <Label x:Name="lb1" Content="bảng phân công" HorizontalContentAlignment="Center"/>
+                <Grid Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Margin="5" Content="Mã Hoá Đơn"/>
+                    <Label Grid.Row="1" Margin="5" Content="Mã Quản lý Phân công"/>
+                    <Label Grid.Row="2" Margin="5" Content="Mã nhân viên phụ trách"/>
+                    <Label Grid.Row="3" Margin="5" Content="Mô tả công việc"/>
+
+                    <TextBlock x:Name="cb_HD_id" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"
+                               Text="{Binding Pc_md.HD_id}"/>
+                    <ComboBox x:Name="cb_QL_id" Grid.Row="1" Grid.Column="1" 
+                              SelectedValuePath="TK_id"
+                              SelectedValue="{Binding Pc_md.QL_id}"
+                              ItemsSource="{Binding DsQL_id}"
+                              DisplayMemberPath="Hoten"/>
+                    <ComboBox x:Name="cb_NV_id" Grid.Row="2" Grid.Column="1"
+                              SelectedValuePath="TK_id"
+                              SelectedValue="{Binding Pc_md.NV_id}"
+                              ItemsSource="{Binding DsNV_id}"
+                              DisplayMemberPath="Hoten"/>
+                    <TextBox x:Name="tb_mota" Grid.Row="3" Grid.Column="1" Height="100" Width="320"
+                             TextWrapping="Wrap"/>
+                </Grid>
+                
+                <StackPanel Orientation="Horizontal" Margin="20"
+                            VerticalAlignment="Center" 
+                            HorizontalAlignment="Center">
+                    <Button Width="120" 
+                            Margin="10 0"
+                            Click="exit_btn"
+                            Content="H U Ỷ"/>
+                    <Button Width="120" 
+                            Margin="10 0"
+                            Click="save_btn"
+                            Content="XÁC NHẬN"/>
+                </StackPanel>
+            </StackPanel>
+            
+        </Border>
+    </materialDesign:TransitioningContent>
+</Window>

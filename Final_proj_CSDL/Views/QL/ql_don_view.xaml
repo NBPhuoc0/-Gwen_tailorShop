@@ -12,7 +12,7 @@
              TextElement.FontFamily="Segoe UI"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="810" d:DesignWidth="1570">
 
     <UserControl.DataContext>
         <ViewModels:DonHang_VM/>
@@ -29,7 +29,11 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
-                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="200"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -40,8 +44,15 @@
                 VerticalAlignment="Center"
                 FontSize="25"
                 Text="Quản lý đơn hàng"/>
-            <!-- nút chức năng -->
-            <StackPanel Margin="10" Grid.Column="1" Grid.Row="1" Width="80"
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <Button Margin="20 0" Width="100" Content="Tất cả đơn" Command="{Binding Load_dsHD_Command}"/>
+                <Button Margin="20 0" Width="auto" Content="Đơn chưa phân công" Command="{Binding Load_dsHD_chuapc_Command}"/>
+                <Button Margin="20 0" Width="auto" Content="Đơn đang hoàn hành" Command="{Binding Load_dsHD_dapc_Command}"/>
+                <Button Margin="20 0" Width="auto" Content="Đơn chờ giao" Command="{Binding Load_dsHD_chogiao_Command}"/>
+                <Button Margin="20 0" Width="auto" Content="Đơn đã giao" Command="{Binding Load_dsHD_dagiao_Command}"/>
+            </StackPanel>
+                <!-- nút chức năng cho quản lý đơn -->
+            <StackPanel Margin="10" Grid.Column="1" Grid.Row="2" Width="80"
                 Orientation="Vertical">
                 <Button
                     Margin="0 10"
@@ -61,12 +72,19 @@
                     Content="{materialDesign:PackIcon Kind=Delete}"
                     Style="{StaticResource MaterialDesignFlatMidBgButton}" 
                     ToolTip="Xoá hoá đơn"/>
+                <Button
+                    Margin="0 10"
+                    Command="{Binding XN_giao_Command}"
+                    Content="{materialDesign:PackIcon Kind=PackageCheck}"
+                    Style="{StaticResource MaterialDesignFlatMidBgButton}" 
+                    ToolTip="Xác nhận giao đơn hàng"/>
+                
                 
             </StackPanel>
 
-            <!-- phần xem dữ liệu -->
-            <DataGrid x:Name="DataGrid"
-                      Grid.Row="1"
+            <!-- phần xem dữ liệu đơn hàng -->
+            <DataGrid Margin="10"
+                      Grid.Row="2"
                       IsReadOnly="True"
                       AutoGenerateColumns="False"
                       SelectionMode="Single"
@@ -95,15 +113,15 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn
                         Header="ID"
-                        Width="70"
+                        Width="auto"
                         Binding="{Binding Hd_id}"/>
                     <DataGridTextColumn
                         Header="Tên khách hàng"
-                        Width="200"
+                        Width="auto"
                         Binding="{Binding TenKH}"/>
                     <DataGridTextColumn
                         Header="Sđt khách"
-                        Width="150"
+                        Width="auto"
                         Binding="{Binding Sdt_KH}"/>
                     <DataGridTextColumn
                         Header="Mô tả"
@@ -111,18 +129,96 @@
                         Binding="{Binding Mota}"/>
                     <DataGridTextColumn
                         Header="Người tạo"
-                        Width="150"
+                        Width="auto"
                         Binding="{Binding Ql_id}"/>
                     <DataGridTextColumn
                         Header="Ngày tạo"
-                        Width="150"
+                        Width="auto"
                         Binding="{Binding Ngaytao}"/>
                     <DataGridTextColumn
                         Header="Ngày giao"
-                        Width="150"
-                        Binding="{Binding Ngaygiao}"/>  
+                        Width="auto"
+                        Binding="{Binding Ngaygiao}"/>
                 </DataGrid.Columns>
             </DataGrid>
+            <!-- chút chức năng cho phân công-->
+            <DockPanel Grid.Row="4" Grid.ColumnSpan="2">
+                <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" Margin="10 0">
+                    <Button
+                    Width="80"
+                    Margin="30 0"
+                    Command="{Binding PhanCongCV_Command}"
+                    Content="{materialDesign:PackIcon Kind=Add}"
+                    Style="{StaticResource MaterialDesignFlatMidBgButton}" 
+                    ToolTip="Thêm phân công"/>
+                    <Button
+                    Width="80"
+                    Margin="30 0"
+                    Command="{Binding Xoa_PC_Command}"
+                    Content="{materialDesign:PackIcon Kind=Delete}"
+                    Style="{StaticResource MaterialDesignFlatMidBgButton}" 
+                    ToolTip="Xoá phân công"/>
+                </StackPanel>
+                <Label VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Content="Bản phân công"/>
+            </DockPanel>
+            <!-- phần xem bảng phân công-->
+            <DataGrid Margin="10"
+                      Grid.Row="5" Grid.ColumnSpan="2"
+                      IsReadOnly="True"
+                      AutoGenerateColumns="False"
+                      SelectionMode="Single"
+                      ItemsSource="{Binding DanhsachPhanCong, UpdateSourceTrigger=PropertyChanged}"  
+                      SelectedItem="{Binding SelectedPhanCong, Mode=OneWayToSource}"
+                      FontSize="20">
+                <!-- bỏ chọn-->
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="MouseDown">
+                        <b:InvokeCommandAction
+                            CommandParameter="{Binding}"
+                            Command="{Binding Load_dsHD_Command}"/>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+                <!-- trigger chọn vào 1 tk-->
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridCell">
+                        <Style.Triggers>
+                            <Trigger Property="DataGridCell.IsSelected" Value="True">
+                                <Setter Property="Background" Value="{StaticResource fcolor4}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.Resources>
+                <!-- data -->
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Header="ID"
+                        Width="auto"
+                        Binding="{Binding PC_id}"/>
+                    <DataGridTextColumn
+                        Header="Mã HD"
+                        Width="auto"
+                        Binding="{Binding HD_id}"/>
+                    <DataGridTextColumn
+                        Header="Người tạo"
+                        Width="auto"
+                        Binding="{Binding QL_id }"/>
+                    <DataGridTextColumn
+                        Header="Mô tả"
+                        Width="*"
+                        Binding="{Binding Mota}"/>
+                    <DataGridTextColumn
+                        Header="Trạng thái hoàn thành"
+                        Width="auto"
+                        Binding="{Binding Trangthai}"/>
+                    <DataGridTextColumn
+                        Header="Ngày tạo"
+                        Width="auto"
+                        Binding="{Binding Ngaytao}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            
+            
         </Grid>
 
     </materialDesign:TransitioningContent>

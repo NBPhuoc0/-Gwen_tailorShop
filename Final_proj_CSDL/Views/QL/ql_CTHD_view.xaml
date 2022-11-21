@@ -11,73 +11,106 @@
         TextElement.Foreground="Black"
         TextElement.FontFamily="Segoe UI"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Background="{StaticResource fcolor3}"
+        Background="Transparent" AllowsTransparency="True"
         WindowStyle="None" WindowStartupLocation="CenterScreen"  ResizeMode="NoResize"
-        d:DesignHeight="450" d:DesignWidth="800">
-    
-    <materialDesign:TransitioningContent>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="auto" />
-                
-            </Grid.ColumnDefinitions>
+        d:DesignHeight="700" d:DesignWidth="900">
 
-            <Label Grid.Row="0" Grid.Column="0" FontSize="25" FontWeight="DemiBold"
+    <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect ExpandIn, Duration = 0:0:0.5 }">
+        <Border CornerRadius="20">
+            <Border.Background>
+                <LinearGradientBrush >
+                    <GradientStop Color="{StaticResource color4}" Offset="0"/>
+                    <GradientStop Color="{StaticResource color3}" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="240"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" FontSize="25" FontWeight="DemiBold"
                    Content="Chi tiết hoá đơn" HorizontalAlignment="Center"/>
 
-            <DataGrid Grid.Row="1" Grid.Column="0" x:Name="dataG" IsReadOnly="True"
+                <DataGrid Grid.Row="1" Grid.Column="0" x:Name="dataG" IsReadOnly="True"
                       AutoGenerateColumns="False" SelectionChanged="selectionChanged">
-                <DataGrid.Columns>
-                    <DataGridTextColumn 
-                        Header="tên sản phẩm"
-                        Binding="{Binding TenSP}"/>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn 
+                            Header="tên sản phẩm"
+                            Width="auto"
+                            Binding="{Binding TenSP}"/>
 
-                    <DataGridTextColumn 
-                        Header="Số lượng"
-                        Binding="{Binding Soluong}"/>
+                        <DataGridTextColumn 
+                            Width="auto"
+                            Header="Số lượng"
+                            Binding="{Binding Soluong}"/>
 
-                    <DataGridTextColumn
-                        Header="Giá"
-                        Binding="{Binding Gia}"/>
-                    
-                    <DataGridTextColumn
-                        Header="Thành tiền"
-                        Binding="{Binding Thanhtien}"/>
+                        <DataGridTextColumn
+                            Width="auto"
+                            Header="Giá"
+                            Binding="{Binding Gia}"/>
 
-                </DataGrid.Columns>
-            </DataGrid>
+                        <DataGridTextColumn
+                            Width="auto"
+                            Header="Thành tiền"
+                            Binding="{Binding Thanhtien}"/>
 
-            <Button Grid.Row="0" Grid.Column="1" Margin="10"
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Button Grid.Row="0" Grid.Column="1" Margin="10"
                     Content="X" Click="exit_btn"
                     HorizontalAlignment="Right" Width="50"/>
 
-            <StackPanel Margin="10" Grid.Column="1" Grid.Row="1" Width="80"
+                <StackPanel Margin="10" Grid.Column="1" Grid.Row="1" Width="80"
                 Orientation="Vertical">
-                <Button
+                    <Button
                     Margin="0 10"
                     Content="{materialDesign:PackIcon Kind=Delete}"
                     Style="{StaticResource MaterialDesignFlatMidBgButton}" 
                     Click="xoa_cthd"
                     ToolTip="Thêm đơn hàng"/>
 
-            </StackPanel>
+                </StackPanel>
 
-            <StackPanel Height="100" Grid.Row="2" Grid.Column="0" Margin="10"
+                <StackPanel Grid.Row="2" Grid.Column="0" Margin="10"
                         Orientation="Horizontal">
-                <GroupBox Header="ID sản phẩm" Width="auto" Margin="20 0">
-                    <TextBox x:Name="them_id" />
-                </GroupBox>
-                <GroupBox Header="Số lượng" Width="auto" Margin="20 0">
-                    <TextBox x:Name="them_soluong"/>
-                </GroupBox>
-                <Button Content="thêm" Click="them_click"/>
-            </StackPanel>
-        </Grid>
+                    <GroupBox Header="ID sản phẩm" Width="300" Margin="20 0">
+                        <ComboBox x:Name="them_id"
+                                  SelectionChanged="Select_SP"
+                                  SelectedItem="{Binding SelectedSanPham}"
+                                  ItemsSource="{Binding DsSanPham}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Path=SP_id}"/>
+                                        <TextBlock Text=" - "/>
+                                        <TextBlock Text="{Binding Path=TenSP}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </GroupBox>
+                    
+                    <GroupBox Header="Số lượng" Width="auto" Margin="20 0">
+                        <TextBox x:Name="them_soluong" />
+                    </GroupBox>
+                    <GroupBox Header="Ảnh sản phẩm" Width="240" Margin="20 0">
+                        <Image x:Name="anhSP" />
+                    </GroupBox>
+                </StackPanel>
+                <Button Grid.Column="1" Grid.Row="2" Width="80"
+                    Content="thêm" Click="them_click"/>
+
+            </Grid>
+
+        </Border>
     </materialDesign:TransitioningContent>
 </Window>
