@@ -9,6 +9,7 @@ namespace Final_proj_CSDL.ViewModels
     internal class Main_VM : baseVM
     {
         private string _tenUser;
+        private string _quyen;
         public ICommand Load_home_Command { get; set; }
 		public ICommand Logout { get; set; }
 		public ICommand Load_QLNS_Command { get; set; }
@@ -17,15 +18,24 @@ namespace Final_proj_CSDL.ViewModels
 		public ICommand Load_phancong_nv_Command { get; set; }
 
         public string TenUser { get => _tenUser; set => _tenUser = value; }
+        public string Quyen { get => _quyen; set => _quyen = value; }
 
         public Main_VM()
 		{
 			TenUser = data_temp.tk_md.Hoten;
+			Quyen = data_temp.tk_md.Chucvu;
 			//tới trang chủ command
 			Load_home_Command = new RelayCommand<object>(o =>
 			{
-				Main_Window.main_w.currentview.Content = new home_view();
-			});
+				if (Quyen == "QL")
+				{
+                    Main_Window.main_w.currentview.Content = new home_view();
+                }
+				else
+				{
+					Main_Window.main_w.currentview.Content = new nv_phancong_view();
+				}
+            });
 			//đăng xuất command
 			Logout = new RelayCommand<object>(o =>
 			{

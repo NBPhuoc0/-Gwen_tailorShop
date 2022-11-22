@@ -37,8 +37,29 @@ namespace Final_proj_CSDL.DAL
             values[0] = HD_id;
             string json = JsonConvert.SerializeObject(Execute_fn("fn_pcBy_HD_id", name, values, parameter));
             return JsonConvert.DeserializeObject<List<PhanCong_Models>>(json);
-
         }
+        public List<PhanCong_Models> fn_pcBy_NV_id(int NV_id)
+        {
+            int parameter = 1;
+            string[] name = new string[parameter];
+            object[] values = new object[parameter];
+            name[0] = "@NV_id";
+            values[0] = NV_id;
+            string json = JsonConvert.SerializeObject(Execute_fn("fn_pcBy_NV_id", name, values, parameter));
+            return JsonConvert.DeserializeObject<List<PhanCong_Models>>(json);
+        }
+
+        public List<XacNhanPC_Models> fn_xnBy_PC_id(int PC_id)
+        {
+            int parameter = 1;
+            string[] name = new string[parameter];
+            object[] values = new object[parameter];
+            name[0] = "@PC_id";
+            values[0] = PC_id;
+            string json = JsonConvert.SerializeObject(Execute_fn("fn_xnBy_PC_id", name, values, parameter));
+            return JsonConvert.DeserializeObject<List<XacNhanPC_Models>>(json);
+        }
+
         public bool sp_phancongcongviec(PhanCong_Models pc)
         {
             int parameter = 5;
@@ -56,6 +77,16 @@ namespace Final_proj_CSDL.DAL
             values[4] = pc.Ngaytao;
             return Execute_sp("sp_phancongcongviec", name, values, parameter);
         }
+        public bool sp_xacnhanCV_hoanthanh(int PC_id)
+        {
+            int parameter = 1;
+            string[] name = new string[parameter];
+            object[] values = new object[parameter];
+            name[0] = "@PC_id";
+            values[0] = PC_id;
+            return Execute_sp("sp_xacnhanCV_hoanthanh", name, values, parameter);
+        }
+
         public bool sp_suaphancong(PhanCong_Models pc)
         {
             int parameter = 2;

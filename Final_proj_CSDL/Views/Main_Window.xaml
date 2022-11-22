@@ -63,11 +63,6 @@
                             <RadioButton
                             Margin="0 2 0 2"
                             Style="{StaticResource MaterialDesignToolRadioButton}"
-                            Command="{Binding Load_QLDon_Command, UpdateSourceTrigger=PropertyChanged}"
-                            Content="quản lý đơn hàng"/>
-                            <RadioButton
-                            Margin="0 2 0 2"
-                            Style="{StaticResource MaterialDesignToolRadioButton}"
                             Command="{Binding Logout}"
                             Content="Logout"/>
                         </StackPanel>
