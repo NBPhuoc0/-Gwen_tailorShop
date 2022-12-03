@@ -158,6 +158,13 @@
                     Content="{materialDesign:PackIcon Kind=Delete}"
                     Style="{StaticResource MaterialDesignFlatMidBgButton}" 
                     ToolTip="Xoá phân công"/>
+                    <Button
+                    Width="80"
+                    Margin="30 0"
+                    Command="{Binding Phancong_ktcv_commnad}"
+                    Content="{materialDesign:PackIcon Kind=ClipboardCheck}"
+                    Style="{StaticResource MaterialDesignFlatMidBgButton}" 
+                    ToolTip="xác nhận phân công"/>
                 </StackPanel>
                 <Label VerticalAlignment="Center" HorizontalAlignment="Center"
                     Content="Bản phân công"/>
@@ -196,9 +203,9 @@
                         Width="auto"
                         Binding="{Binding PC_id}"/>
                     <DataGridTextColumn
-                        Header="Mã HD"
+                        Header="Người phụ trách"
                         Width="auto"
-                        Binding="{Binding HD_id}"/>
+                        Binding="{Binding NV_id}"/>
                     <DataGridTextColumn
                         Header="Người tạo"
                         Width="auto"

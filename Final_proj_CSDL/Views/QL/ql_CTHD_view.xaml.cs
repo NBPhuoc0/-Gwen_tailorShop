@@ -60,11 +60,19 @@ namespace Final_proj_CSDL.Views.QL
 
         private void them_click(object sender, RoutedEventArgs e)
         {
-            Cthd.SP_id = selectedSanPham.SP_id;
-            Cthd.Soluong = int.Parse(them_soluong.Text);
-            ctDAO.sp_themcthd(Cthd);
-            load_CTHD(Cthd.HD_id);
-            dataG.ItemsSource = DsCTHD;
+            if (them_soluong.Text == null|| them_soluong.Text == "")
+            {
+                ThongBao_W tb = new ThongBao_W("vui lòng nhập số lượng cần đặt!", 'l');
+                tb.ShowDialog();
+            }
+            else
+            {
+                Cthd.SP_id = selectedSanPham.SP_id;
+                Cthd.Soluong = int.Parse(them_soluong.Text);
+                ctDAO.sp_themcthd(Cthd);
+                load_CTHD(Cthd.HD_id);
+                dataG.ItemsSource = DsCTHD;
+            }
         }
 
         private void xoa_cthd(object sender, RoutedEventArgs e)

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -36,6 +37,7 @@ namespace Final_proj_CSDL.ViewModels
         public ICommand PhanCongCV_Command { get; set; }
         public ICommand Xoa_PC_Command { get; set; }
         public ICommand XN_giao_Command { get; set; }
+        public ICommand Phancong_ktcv_commnad { get; set; }
 
 
 
@@ -92,11 +94,19 @@ namespace Final_proj_CSDL.ViewModels
                 td.ShowDialog();
                 Load_dsHD_Command.Execute(null);
             });
-            them_hd_Command = new RelayCommand<object>(p =>
+            them_hd_Command = new RelayCommand<Window>(p =>
             {
-                SelectedHoaDon.Ngaytao = DateTime.Now;
-                SelectedHoaDon.Ql_id = data_temp.tk_md.TK_id;
-                hdDao.sp_themhd(SelectedHoaDon);
+                ThongBao_W tb = new ThongBao_W("bạn có thật sự muốn thêm đơn hàng này ?", 'x');
+                tb.ShowDialog();
+                if (tb.yes)
+                {
+                    SelectedHoaDon.Ngaytao = DateTime.Now;
+                    SelectedHoaDon.Ql_id = data_temp.tk_md.TK_id;
+                    hdDao.sp_themhd(SelectedHoaDon);
+                    p.Close();
+                    ql_CTHD_view cthd = new ql_CTHD_view(SelectedHoaDon.Hd_id);
+                    cthd.ShowDialog();
+                }
             });
             them_cthd_Command = new RelayCommand<object>(p =>
             {
@@ -140,6 +150,21 @@ namespace Final_proj_CSDL.ViewModels
                     {
                         hdDao.sp_XN_giao_hd(SelectedHoaDon.Hd_id);
                     }
+                }
+            });
+            Phancong_ktcv_commnad = new RelayCommand<object>(p =>
+            {
+                ql_Phancong_ktcv_view ktcv = new ql_Phancong_ktcv_view();
+                ktcv.ShowDialog();
+                if (ktcv.Kq != null && ktcv.Loinhan != null)
+                {
+                    XacNhanPC_Models xn = new XacNhanPC_Models();
+                    xn.QL_id = data_temp.tk_md.TK_id;
+                    xn.PC_id = SelectedPhanCong.PC_id;
+                    xn.Kq = (bool)ktcv.Kq;
+                    xn.Loinhan = ktcv.Loinhan;
+                    xn.Ngaytao = DateTime.Now;
+                    pcDao.sp_XacNhanPC_kiemtra(xn);
                 }
             });
             

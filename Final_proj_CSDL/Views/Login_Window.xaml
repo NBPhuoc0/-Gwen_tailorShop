@@ -68,7 +68,7 @@
                         Kind="Password"/>
                     <PasswordBox
                         x:Name="MK"
-                        Password="1234"
+                        Password="123"
                         Width="240"
                         Height="40"
                         HorizontalContentAlignment="Center"
