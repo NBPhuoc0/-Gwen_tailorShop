@@ -13,6 +13,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         WindowStyle="None" WindowStartupLocation="CenterScreen" 
         Background="Transparent" AllowsTransparency="True" ResizeMode="NoResize"
+        Height="450" Width="800"
         d:DesignHeight="450" d:DesignWidth="800">
 
     <Window.DataContext>

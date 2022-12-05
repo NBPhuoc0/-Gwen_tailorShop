@@ -24,7 +24,9 @@
                 </LinearGradientBrush>
             </Border.Background>
             <Grid>
-                <Label Margin="20" Content="Đánh giá báo cáo công việc từ thợ" HorizontalAlignment="Center"/>
+                <Label Margin="20"  HorizontalAlignment="Center"
+                       Content="Đánh giá báo cáo công việc từ thợ"
+                       FontWeight="DemiBold" FontSize="30"/>
                 <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="170"/>

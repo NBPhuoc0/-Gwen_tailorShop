@@ -125,5 +125,16 @@ namespace Final_proj_CSDL.DAL
             values[4] = xnpc.Ngaytao;
             return Execute_sp("sp_XacNhanPC_kiemtra", name, values, parameter);
         }
+
+        public List<XacNhanPC_Models> fn_vw_baocao_pc(int PC_id)
+        {
+            int parameter = 1;
+            string[] name = new string[parameter];
+            object[] values = new object[parameter];
+            name[0] = "@PC_id";
+            values[0] = PC_id;
+            string json = JsonConvert.SerializeObject(Execute_fn("fn_vw_baocao_pc", name, values, parameter));
+            return JsonConvert.DeserializeObject<List<XacNhanPC_Models>>(json);
+        }
     }
 }

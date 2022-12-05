@@ -38,6 +38,7 @@ namespace Final_proj_CSDL.ViewModels
         public ICommand Xoa_PC_Command { get; set; }
         public ICommand XN_giao_Command { get; set; }
         public ICommand Phancong_ktcv_commnad { get; set; }
+        public ICommand Load_dsBaocao_Command { get; set; }
 
 
 
@@ -61,6 +62,7 @@ namespace Final_proj_CSDL.ViewModels
             Load_dsHD_Command = new RelayCommand<object>(p =>
             {
                 DanhsachHoaDon = hdDao.vw_load_hoadon_tt();
+                DanhsachPhanCong = null;
             });
             Load_dsHD_dapc_Command = new RelayCommand<object>(p =>
             {
@@ -82,7 +84,6 @@ namespace Final_proj_CSDL.ViewModels
             {
                 DanhsachPhanCong = pcDao.fn_pcBy_HD_id(SelectedHoaDon.Hd_id);
             });
-
             Load_taodon_Command = new RelayCommand<object>(o =>
             {
                 SelectedHoaDon = new HoaDon_Models();
@@ -104,8 +105,7 @@ namespace Final_proj_CSDL.ViewModels
                     SelectedHoaDon.Ql_id = data_temp.tk_md.TK_id;
                     hdDao.sp_themhd(SelectedHoaDon);
                     p.Close();
-                    ql_CTHD_view cthd = new ql_CTHD_view(SelectedHoaDon.Hd_id);
-                    cthd.ShowDialog();
+                    
                 }
             });
             them_cthd_Command = new RelayCommand<object>(p =>
@@ -154,17 +154,28 @@ namespace Final_proj_CSDL.ViewModels
             });
             Phancong_ktcv_commnad = new RelayCommand<object>(p =>
             {
-                ql_Phancong_ktcv_view ktcv = new ql_Phancong_ktcv_view();
-                ktcv.ShowDialog();
-                if (ktcv.Kq != null && ktcv.Loinhan != null)
+                if (SelectedPhanCong != null)
                 {
-                    XacNhanPC_Models xn = new XacNhanPC_Models();
-                    xn.QL_id = data_temp.tk_md.TK_id;
-                    xn.PC_id = SelectedPhanCong.PC_id;
-                    xn.Kq = (bool)ktcv.Kq;
-                    xn.Loinhan = ktcv.Loinhan;
-                    xn.Ngaytao = DateTime.Now;
-                    pcDao.sp_XacNhanPC_kiemtra(xn);
+                    ql_Phancong_ktcv_view ktcv = new ql_Phancong_ktcv_view();
+                    ktcv.ShowDialog();
+                    if (ktcv.Kq != null && ktcv.Loinhan != null)
+                    {
+                        XacNhanPC_Models xn = new XacNhanPC_Models();
+                        xn.QL_id = data_temp.tk_md.TK_id;
+                        xn.PC_id = SelectedPhanCong.PC_id;
+                        xn.Kq = (bool)ktcv.Kq;
+                        xn.Loinhan = ktcv.Loinhan;
+                        xn.Ngaytao = DateTime.Now;
+                        pcDao.sp_XacNhanPC_kiemtra(xn);
+                    }
+                }
+            });
+            Load_dsBaocao_Command = new RelayCommand<object>(p =>
+            {
+                if (SelectedPhanCong != null)
+                {
+                    ql_banXNCV_view dsBC = new ql_banXNCV_view(SelectedPhanCong.PC_id);
+                    dsBC.ShowDialog();
                 }
             });
             

@@ -1,0 +1,75 @@
+﻿<Window x:Class="Final_proj_CSDL.Views.QL.ql_banXNCV_view"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Final_proj_CSDL.Views.QL"
+        mc:Ignorable="d"
+        xmlns:ViewModels="clr-namespace:Final_proj_CSDL.ViewModels"
+        TextElement.FontSize="15"
+        TextElement.Foreground="Black"
+        TextElement.FontFamily="Segoe UI"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"     
+        Background="Transparent"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize"
+        Title="ql_banXNCV_view" Height="450" Width="800">
+    <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect ExpandIn, Duration = 0:0:0.5 }">
+        <Border CornerRadius="20">
+            <Border.Background>
+                <LinearGradientBrush >
+                    <GradientStop Color="{StaticResource color4}" Offset="0"/>
+                    <GradientStop Color="{StaticResource color3}" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Margin="10" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold"
+                    Content="Báo cáo xách nhận công việc từ quản lý"/>
+                <Button     
+                    Margin=" 20 0"
+                    HorizontalAlignment="Right"
+                    Click="exit_btn"
+                    Content="{materialDesign:PackIcon Kind=Close}"
+                    Style="{StaticResource MaterialDesignFlatMidBgButton}" />
+
+                <DataGrid Grid.Row="1" x:Name="dataG" IsReadOnly="True"
+                      AutoGenerateColumns="False" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn 
+                            Header="Báo cáo id"
+                            Width="auto"
+                            Binding="{Binding Baocao_id}"/>
+
+                        <DataGridTextColumn 
+                            Width="auto"
+                            Header="Phân công id"
+                            Binding="{Binding PC_id}"/>
+
+                        <DataGridTextColumn
+                            Width="auto"
+                            Header="QL phân công"
+                            Binding="{Binding QL_id}"/>
+
+                        <DataGridCheckBoxColumn
+                            Width="auto"
+                            Header="kết quả"
+                            Binding="{Binding Kq}"/>
+
+                        <DataGridTextColumn
+                            Width="auto"
+                            Header="lời nhắn"
+                            Binding="{Binding Loinhan}"/>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </Grid>
+        </Border>
+    </materialDesign:TransitioningContent>
+</Window>

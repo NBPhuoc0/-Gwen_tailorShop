@@ -109,6 +109,9 @@
     <Compile Include="Views\NV\nv_phancong_view.xaml.cs">
       <DependentUpon>nv_phancong_view.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\QL\ql_banXNCV_view.xaml.cs">
+      <DependentUpon>ql_banXNCV_view.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\QL\ql_CTHD_view.xaml.cs">
       <DependentUpon>ql_CTHD_view.xaml</DependentUpon>
     </Compile>
@@ -200,6 +203,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NV\nv_phancong_view.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\QL\ql_banXNCV_view.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

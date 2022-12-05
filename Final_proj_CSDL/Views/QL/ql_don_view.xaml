@@ -128,6 +128,10 @@
                         Width="*"
                         Binding="{Binding Mota}"/>
                     <DataGridTextColumn
+                        Header="Tổng tiền"
+                        Width="*"
+                        Binding="{Binding Tongtien}"/>
+                    <DataGridTextColumn
                         Header="Người tạo"
                         Width="auto"
                         Binding="{Binding Ql_id}"/>
@@ -165,6 +169,15 @@
                     Content="{materialDesign:PackIcon Kind=ClipboardCheck}"
                     Style="{StaticResource MaterialDesignFlatMidBgButton}" 
                     ToolTip="xác nhận phân công"/>
+                    <Button
+                    Width="80"
+                    Margin="30 0"
+                    Command="{Binding Load_dsBaocao_Command}"
+                    Content="{materialDesign:PackIcon Kind=ClipboardList}"
+                    Style="{StaticResource MaterialDesignFlatMidBgButton}" 
+                    ToolTip="xem các xác nhận báo cáo của QL"/>
+                    
+                    
                 </StackPanel>
                 <Label VerticalAlignment="Center" HorizontalAlignment="Center"
                     Content="Bản phân công"/>
@@ -176,7 +189,7 @@
                       AutoGenerateColumns="False"
                       SelectionMode="Single"
                       ItemsSource="{Binding DanhsachPhanCong, UpdateSourceTrigger=PropertyChanged}"  
-                      SelectedItem="{Binding SelectedPhanCong, Mode=OneWayToSource}"
+                      SelectedItem="{Binding SelectedPhanCong, Mode=TwoWay}"
                       FontSize="20">
                 <!-- bỏ chọn-->
                 <b:Interaction.Triggers>

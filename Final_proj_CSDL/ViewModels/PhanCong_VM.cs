@@ -1,5 +1,6 @@
 ﻿using Final_proj_CSDL.DAL;
 using Final_proj_CSDL.Models;
+using Final_proj_CSDL.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,8 +47,13 @@ namespace Final_proj_CSDL.ViewModels
             });
             XNhoanthanh_cv_Command = new RelayCommand<PhanCong_Models>(p =>
             {
-                pcDao.sp_xacnhanCV_hoanthanh(p.PC_id);
-                Load_dsPC_Command.Execute(null);
+                ThongBao_W tb = new ThongBao_W("Bạn thực sự muốn xác nhận hoàn thành ?", 'x');
+                tb.ShowDialog();
+                if (tb.yes)
+                {
+                    pcDao.sp_xacnhanCV_hoanthanh(p.PC_id);
+                    Load_dsPC_Command.Execute(null);
+                }
             });
 
         }

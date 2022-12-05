@@ -144,12 +144,6 @@
                         Header="Chức vụ"
                         Width="110"
                         Binding="{Binding Chucvu}"/>
-                    <DataGridCheckBoxColumn
-                        ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
-                        Header="Đã nghỉ việc"
-                        Width="150"
-                        Binding="{Binding Nghiviec}">
-                    </DataGridCheckBoxColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
